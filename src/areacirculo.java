@@ -5,32 +5,41 @@ public class areacirculo {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
-        System.out.print("Digite o valor da compra:");
-        double valorCompra = entrada.nextDouble();
+        System.out.print("Digite o código da operaç?o (1 - Perímetro do círculo, 2 - Área do círculo, 3 - Volume da esfera):");
+        int codigoOperacao = entrada.nextInt();
 
-        System.out.print("Digite o valor pago:");
-        double valorPago = entrada.nextDouble();
+        System.out.print("Digite o raio:");
+        double raio = entrada.nextDouble();
 
-        double troco = valorPago - valorCompra;
-
-        if (troco < 0) {
-            System.out.println("Quantia paga é insuficiente para realizar a compra.");
-            entrada.close();
-            return;
-        }
-
-        System.out.println("Troco: R$" + troco);
-
-        int[] notas = {50, 20, 10, 5, 2, 1};
-
-        for (int nota : notas) {
-            int quantidadeNotas = (int) (troco / nota);
-            troco %= nota;
-            if (quantidadeNotas > 0) {
-                System.out.println(quantidadeNotas + " nota(s) de R$" + nota + ",00");
-            }
+        switch (codigoOperacao) {
+            case 1:
+                calcularPerimetroCirculo(raio);
+                break;
+            case 2:
+                calcularAreaCirculo(raio);
+                break;
+            case 3:
+                calcularVolumeEsfera(raio);
+                break;
+            default:
+                System.out.println("Erro: Código de operaç?o inválido.");
         }
 
         entrada.close();
+    }
+
+    public static void calcularPerimetroCirculo(double raio) {
+        double perimetro = 2 * Math.PI * raio;
+        System.out.println("Perímetro do círculo: " + perimetro);
+    }
+
+    public static void calcularAreaCirculo(double raio) {
+        double area = Math.PI * raio * raio;
+        System.out.println("Área do círculo: " + area);
+    }
+
+    public static void calcularVolumeEsfera(double raio) {
+        double volume = (4.0 / 3.0) * Math.PI * Math.pow(raio, 3);
+        System.out.println("Volume da esfera: " + volume);
     }
 }
